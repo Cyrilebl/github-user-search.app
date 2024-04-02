@@ -1,0 +1,228 @@
+@import "./_variables.scss";
+@import "./_mixins";
+
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  @include flex(center);
+  flex-direction: column;
+  min-height: 100vh;
+  margin: auto;
+  font-family: $font;
+  background-color: $background;
+}
+
+h1 {
+  color: $text;
+  font-size: 26px;
+  line-height: 38px;
+}
+
+h2 {
+  color: $text;
+  font-size: 22px;
+  line-height: 33px;
+}
+
+h3 {
+  color: $secondary;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h4 {
+  color: $social;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 25px;
+}
+
+//Header
+
+header {
+  @include flex(space-between);
+  width: 730px;
+}
+
+header a {
+  color: $text;
+  font-size: 26px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.colorMode {
+  @include flex(center);
+  gap: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+  padding-bottom: 2px;
+}
+
+.colorMode p {
+  color: $third;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+.colorMode:hover p {
+  color: $text;
+}
+
+.colorMode:hover svg path {
+  fill: $text;
+}
+
+//Search Bar
+
+.searchBar {
+  background-color: $component-background;
+  border-radius: 15px;
+  width: 730px;
+  height: 69px;
+  @include flex(space-between);
+  margin: 30px 0;
+  padding: 0 10px 0 32px;
+  box-shadow: $shadow;
+}
+
+.searchBar div {
+  @include flex(none);
+  gap: 10px;
+}
+
+.searchBar img {
+  width: 24px;
+  height: 24px;
+}
+
+#textInput {
+  font-family: $font;
+  color: $text;
+  caret-color: $secondary;
+  font-size: 18px;
+  border: none;
+  width: 400px;
+}
+
+#textInput:focus {
+  outline: none;
+}
+
+#textInput::placeholder {
+  font-family: $font;
+  color: $social;
+  font-size: 18px;
+}
+
+.searchBar .error {
+  display: none;
+  color: $error;
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 2px;
+  margin-left: 12px;
+}
+
+.searchBar button {
+  color: $component-background;
+  background-color: $secondary;
+  font-size: 16px;
+  font-weight: bold;
+  width: 106px;
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: $shadow;
+  transition: 0.2s;
+}
+
+.searchBar button:hover {
+  background-color: $btn-hover;
+}
+
+.searchBar button:active {
+  scale: 0.95;
+}
+
+//Search result
+
+#result {
+  background-color: $component-background;
+  border-radius: 15px;
+  width: 730px;
+  min-height: 419px;
+  box-shadow: 0 16px 30px -10px rgba(70, 96, 187, 20%);
+  padding: 48px 38px 48px 58px;
+}
+
+// Top part
+
+.result__top {
+  display: grid;
+  grid-template-columns: 154px 280px 1fr;
+}
+
+#result img {
+  width: 117px;
+  height: 117px;
+  clip-path: circle();
+}
+
+.middle h3 {
+  margin-top: 2px;
+}
+
+.bio {
+  color: $social;
+  grid-column: 2/4;
+  margin-top: 20px;
+}
+
+.right {
+  color: $third;
+  grid-row: 1;
+  grid-column: 4;
+  margin-top: 5px;
+  text-align: end;
+}
+
+// Bottom part
+
+.result__bottom {
+  @include flex(end);
+  margin-top: 21px;
+}
+
+.activity {
+  background-color: $background;
+  width: 480px;
+  height: 85px;
+  border-radius: 10px;
+  @include flex(none);
+  padding: 0 32px;
+}
+
+.result__bottom h1 {
+  font-size: 22px;
+}
+
+.followers {
+  margin-left: 99px;
+  margin-right: 82px;
+}
