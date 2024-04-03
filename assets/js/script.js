@@ -1,20 +1,21 @@
-const result = document.getElementById("result");
-
-const resultTop = document.querySelector(".result__top");
-
+//Avatar
 const left = document.querySelector(".left");
 const resultImg = document.createElement("img");
 
+//Name and login
 const middle = document.querySelector(".middle");
 const resultName = document.createElement("h1");
 const resultLogin = document.createElement("h3");
 
+//Bio
 const bio = document.querySelector(".bio");
 const resultBio = document.createElement("p");
 
+//Creation date
 const right = document.querySelector(".right");
 const creationDate = document.createElement("p");
 
+// Repositories and followers
 const repos = document.querySelector(".repos");
 const nbRepos = document.createElement("h1");
 const followers = document.querySelector(".followers");
@@ -22,17 +23,50 @@ const nbfollowers = document.createElement("h1");
 const following = document.querySelector(".following");
 const nbfollowing = document.createElement("h1");
 
+//Social informations
+const city = document.querySelector(".location");
+const cityLife = document.createElement("p");
+const citySvg = document.querySelector(".link:nth-child(1) path");
+
+const twitter = document.querySelector(".twitter");
+const twitterAccount = document.createElement("p");
+const twitterSvg = document.querySelector(".link:nth-child(2) path");
+
+const website = document.querySelector(".website");
+const personalWebsite = document.createElement("p");
+const websiteSvg = document.querySelector(".link:nth-child(3) g");
+
+const company = document.querySelector(".company");
+const companyName = document.createElement("p");
+const companySvg = document.querySelector(".link:nth-child(4) path");
+
 function searchUser(username) {
   fetch(`https://api.github.com/users/${username}`)
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
-
+      //Avatar
       resultImg.src = data.avatar_url;
+      resultImg.alt = "Profile avatar";
+      left.appendChild(resultImg);
+
+      //Name and login
       resultName.innerText = data.name;
       resultLogin.innerText = `@${data.login}`;
-      resultBio.innerText = data.bio;
-      // Format date as Day / Month / Year
+
+      middle.appendChild(resultName);
+      middle.appendChild(resultLogin);
+
+      //Bio
+      if (data.bio === null) {
+        resultBio.innerText = "This profile has no bio";
+        resultBio.style.opacity = 0.5;
+      } else {
+        resultBio.style.opacity = 1;
+        resultBio.innerText = data.bio;
+      }
+      bio.appendChild(resultBio);
+
+      //Creation date
       const joinDate = new Date(data.created_at);
       const months = [
         "Jan",
@@ -52,33 +86,80 @@ function searchUser(username) {
         months[joinDate.getMonth()]
       } ${joinDate.getFullYear()}`;
       creationDate.innerText = `Joined ${dateFormat}`;
-      nbRepos.innerText = data.public_repos;
-      nbfollowers.innerText = data.followers;
-      nbfollowing.innerText = data.following;
 
-      left.appendChild(resultImg);
-      middle.appendChild(resultName);
-      middle.appendChild(resultLogin);
-      bio.appendChild(resultBio);
       right.appendChild(creationDate);
+
+      // Repositories and followers
+      nbRepos.innerText = data.public_repos;
       repos.appendChild(nbRepos);
+
+      nbfollowers.innerText = data.followers;
       followers.appendChild(nbfollowers);
+
+      nbfollowing.innerText = data.following;
       following.appendChild(nbfollowing);
+
+      // For position
+      if (data.location === null) {
+        cityLife.innerText = "Not Available";
+        cityLife.style.opacity = 0.5;
+        citySvg.style.opacity = 0.5;
+      } else {
+        cityLife.style.opacity = 1;
+        citySvg.style.opacity = 1;
+        cityLife.innerText = data.location;
+      }
+      city.appendChild(cityLife);
+
+      // For twitterAccount
+      if (data.twitter_username === null) {
+        twitterAccount.innerText = "Not Available";
+        twitterAccount.style.opacity = 0.5;
+        twitterSvg.style.opacity = 0.5;
+      } else {
+        twitterAccount.style.opacity = 1;
+        twitterSvg.style.opacity = 1;
+        twitterAccount.innerText = data.twitter_username;
+      }
+      twitter.appendChild(twitterAccount);
+
+      // For personalWebsite
+      if (data.blog === null || data.blog === "") {
+        personalWebsite.innerText = "Not Available";
+        personalWebsite.style.opacity = 0.5;
+        websiteSvg.style.opacity = 0.5;
+      } else {
+        personalWebsite.style.opacity = 1;
+        websiteSvg.style.opacity = 1;
+        personalWebsite.innerText = data.blog;
+      }
+      website.appendChild(personalWebsite);
+
+      // For companyName
+      if (data.company === null) {
+        companyName.innerText = "Not Available";
+        companyName.style.opacity = 0.5;
+        companySvg.style.opacity = 0.5;
+      } else {
+        companyName.style.opacity = 1;
+        companySvg.style.opacity = 1;
+        companyName.innerText = data.company;
+      }
+      company.appendChild(companyName);
     });
 }
 
 window.onload = searchUser("cyrilebl");
 
 const searchBtn = document.querySelector("button");
+const input = document.getElementById("textInput");
 
 searchBtn.addEventListener("click", () => {
-  const input = document.getElementById("textInput").value;
-
-  searchUser(input);
+  searchUser(input.value);
 });
 
-searchBtn.addEventListener("keypress", () => {
-  const input = document.getElementById("textInput").value;
-
-  searchUser(input);
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    searchUser(input.value);
+  }
 });

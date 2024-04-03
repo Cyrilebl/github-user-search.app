@@ -19,34 +19,25 @@ body {
 }
 
 h1 {
-  color: $text;
-  font-size: 26px;
-  line-height: 38px;
+  @include fontStyle($text, 26px, 38px);
 }
 
 h2 {
-  color: $text;
-  font-size: 22px;
-  line-height: 33px;
+  @include fontStyle($text, 22px, 33px);
 }
 
 h3 {
-  color: $secondary;
+  @include fontStyle($secondary, 16px, 24px);
   font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
 }
 
 h4 {
-  color: $social;
+  @include fontStyle($social, 13px, 20px);
   font-weight: normal;
-  font-size: 13px;
-  line-height: 20px;
 }
 
 p {
-  font-size: 15px;
-  line-height: 25px;
+  @include fontStyle(none, 15px, 25px);
 }
 
 //Header
@@ -67,8 +58,8 @@ header a {
   @include flex(center);
   gap: 16px;
   cursor: pointer;
+  padding: 2px;
   transition: 0.2s;
-  padding-bottom: 2px;
 }
 
 .colorMode p {
@@ -121,6 +112,13 @@ header a {
 
 #textInput:focus {
   outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px $component-background inset;
 }
 
 #textInput::placeholder {
@@ -176,6 +174,7 @@ header a {
 .result__top {
   display: grid;
   grid-template-columns: 154px 280px 1fr;
+  grid-template-rows: 64px 1fr;
 }
 
 #result img {
@@ -197,22 +196,24 @@ header a {
 .right {
   color: $third;
   grid-row: 1;
-  grid-column: 4;
-  margin-top: 5px;
+  grid-column: 3;
+  margin-top: 8px;
   text-align: end;
 }
 
 // Bottom part
 
 .result__bottom {
-  @include flex(end);
-  margin-top: 21px;
+  display: grid;
+  grid-template-rows: 85px 100px;
+  margin-top: 32px;
+  margin-left: 154px;
+  width: 480px;
 }
 
 .activity {
   background-color: $background;
   width: 480px;
-  height: 85px;
   border-radius: 10px;
   @include flex(none);
   padding: 0 32px;
@@ -225,4 +226,24 @@ header a {
 .followers {
   margin-left: 99px;
   margin-right: 82px;
+}
+
+.social {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 19px;
+  margin-top: 37px;
+}
+
+.social p {
+  color: $social;
+}
+
+.link {
+  display: flex;
+  gap: 16px;
+}
+
+.link:nth-child(3) p {
+  width: 250px;
 }
