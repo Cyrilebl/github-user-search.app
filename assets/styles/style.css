@@ -43,28 +43,31 @@ body {
 
 h1 {
   color: var(--title);
+  font-weight: bold;
   font-size: 26px;
   line-height: 38px; }
 
 h2 {
   color: var(--title);
+  font-weight: bold;
   font-size: 22px;
   line-height: 33px; }
 
 h3 {
   color: var(--secondary);
+  font-weight: normal;
   font-size: 16px;
-  line-height: 24px;
-  font-weight: normal; }
+  line-height: 24px; }
 
 h4 {
   color: var(--text);
+  font-weight: normal;
   font-size: 13px;
-  line-height: 20px;
-  font-weight: normal; }
+  line-height: 20px; }
 
 p {
   color: none;
+  font-weight: normal;
   font-size: 15px;
   line-height: 25px; }
 

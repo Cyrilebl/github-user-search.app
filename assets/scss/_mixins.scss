@@ -1,11 +1,12 @@
+@mixin fontStyle($color, $weight, $size, $height) {
+  color: $color;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+}
+
 @mixin flex($justify) {
   display: flex;
   justify-content: $justify;
   align-items: center;
-}
-
-@mixin fontStyle($color, $size, $height) {
-  color: $color;
-  font-size: $size;
-  line-height: $height;
 }
