@@ -40,137 +40,152 @@ const company = document.querySelector(".company");
 const companyName = document.createElement("a");
 const companySvg = document.querySelector(".link:nth-child(4) path");
 
-function searchUser(username) {
-  fetch(`https://api.github.com/users/${username}`)
-    .then((res) => res.json())
-    .then((data) => {
-      //Avatar
-      resultImg.src = data.avatar_url;
-      resultImg.alt = "Profile avatar";
-      left.appendChild(resultImg);
+const errorMessage = document.querySelector(".error");
 
-      //Name and login
-      resultName.innerText = data.name;
-      resultLogin.innerText = `@${data.login}`;
+async function fetchUser(username) {
+  errorMessage.style.display = "none";
 
-      middle.appendChild(resultName);
-      middle.appendChild(resultLogin);
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    const parsedResponse = await response.json();
 
-      //Bio
-      if (data.bio === null) {
-        resultBio.innerText = "This profile has no bio";
-        resultBio.style.opacity = 0.5;
-      } else {
-        resultBio.style.opacity = 1;
-        resultBio.innerText = data.bio;
-      }
-      bio.appendChild(resultBio);
+    if (!response.ok) {
+      return (errorMessage.style.display = "block");
+    }
 
-      //Creation date
-      const joinDate = new Date(data.created_at);
-      const months = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
-      const dateFormat = `${joinDate.getDate()} ${
-        months[joinDate.getMonth()]
-      } ${joinDate.getFullYear()}`;
-      creationDate.innerText = `Joined ${dateFormat}`;
-
-      right.appendChild(creationDate);
-
-      // Repositories and followers
-      nbRepos.innerText = data.public_repos;
-      repos.appendChild(nbRepos);
-
-      nbfollowers.innerText = data.followers;
-      followers.appendChild(nbfollowers);
-
-      nbfollowing.innerText = data.following;
-      following.appendChild(nbfollowing);
-
-      // For position
-      if (data.location === null) {
-        cityLife.innerText = "Not Available";
-        cityLife.style.opacity = 0.5;
-        citySvg.style.opacity = 0.5;
-      } else {
-        cityLife.style.opacity = 1;
-        citySvg.style.opacity = 1;
-        cityLife.innerText = data.location;
-      }
-      city.appendChild(cityLife);
-
-      // For twitterAccount
-      if (data.twitter_username === null) {
-        twitterAccount.innerText = "Not Available";
-        twitterAccount.removeAttribute("href");
-        twitterAccount.style.opacity = 0.5;
-        twitterSvg.style.opacity = 0.5;
-      } else {
-        twitterAccount.style.opacity = 1;
-        twitterSvg.style.opacity = 1;
-        twitterAccount.innerText = `@${data.twitter_username}`;
-        twitterAccount.href = `https://twitter.com/${data.twitter_username}`;
-        twitterAccount.target = "_blank";
-      }
-      twitter.appendChild(twitterAccount);
-
-      // For personalWebsite
-      if (data.blog === null || data.blog === "") {
-        personalWebsite.innerText = "Not Available";
-        personalWebsite.removeAttribute("href");
-        personalWebsite.style.opacity = 0.5;
-        websiteSvg.style.opacity = 0.5;
-      } else {
-        personalWebsite.style.opacity = 1;
-        websiteSvg.style.opacity = 1;
-        const personalWebsiteShort = data.blog.split("/")[2];
-        personalWebsite.innerText = personalWebsiteShort;
-        personalWebsite.href = data.blog;
-        personalWebsite.target = "_blank";
-      }
-      website.appendChild(personalWebsite);
-
-      // For companyName
-      if (data.company === null) {
-        companyName.innerText = "Not Available";
-        companyName.removeAttribute("href");
-        companyName.style.opacity = 0.5;
-        companySvg.style.opacity = 0.5;
-      } else {
-        companyName.style.opacity = 1;
-        companySvg.style.opacity = 1;
-        const companyNameWithoutAt = data.company.split("@")[1];
-        companyName.innerText = data.company;
-        companyName.href = `https://github.com/${companyNameWithoutAt}`;
-        companyName.target = "_blank";
-      }
-      company.appendChild(companyName);
-    });
+    return updateDOM(parsedResponse);
+  } catch (err) {
+    return console.log(err);
+  }
 }
 
-window.onload = searchUser("cyrilebl");
+// Updates DOM with new user data
+function updateDOM(data) {
+  resultImg.src = data.avatar_url;
+  resultImg.alt = "Profile avatar";
+  left.appendChild(resultImg);
+
+  //Name and login
+  resultName.innerText = data.name;
+  resultLogin.innerText = `@${data.login}`;
+
+  middle.appendChild(resultName);
+  middle.appendChild(resultLogin);
+
+  //Bio
+  if (data.bio === null) {
+    resultBio.innerText = "This profile has no bio";
+    resultBio.style.opacity = 0.5;
+  } else {
+    resultBio.style.opacity = 1;
+    resultBio.innerText = data.bio;
+  }
+  bio.appendChild(resultBio);
+
+  //Creation date
+  const joinDate = new Date(data.created_at);
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const dateFormat = `${joinDate.getDate()} ${
+    months[joinDate.getMonth()]
+  } ${joinDate.getFullYear()}`;
+  creationDate.innerText = `Joined ${dateFormat}`;
+
+  right.appendChild(creationDate);
+
+  // Repositories and followers
+  nbRepos.innerText = data.public_repos;
+  repos.appendChild(nbRepos);
+
+  nbfollowers.innerText = data.followers;
+  followers.appendChild(nbfollowers);
+
+  nbfollowing.innerText = data.following;
+  following.appendChild(nbfollowing);
+
+  // For position
+  if (data.location === null) {
+    cityLife.innerText = "Not Available";
+    cityLife.style.opacity = 0.5;
+    citySvg.style.opacity = 0.5;
+  } else {
+    cityLife.style.opacity = 1;
+    citySvg.style.opacity = 1;
+    cityLife.innerText = data.location;
+  }
+  city.appendChild(cityLife);
+
+  // For twitterAccount
+  if (data.twitter_username === null) {
+    twitterAccount.innerText = "Not Available";
+    twitterAccount.removeAttribute("href");
+    twitterAccount.style.opacity = 0.5;
+    twitterSvg.style.opacity = 0.5;
+  } else {
+    twitterAccount.style.opacity = 1;
+    twitterSvg.style.opacity = 1;
+    twitterAccount.innerText = `@${data.twitter_username}`;
+    twitterAccount.href = `https://twitter.com/${data.twitter_username}`;
+    twitterAccount.target = "_blank";
+  }
+  twitter.appendChild(twitterAccount);
+
+  // For personalWebsite
+  if (data.blog === null || data.blog === "") {
+    personalWebsite.innerText = "Not Available";
+    personalWebsite.removeAttribute("href");
+    personalWebsite.style.opacity = 0.5;
+    websiteSvg.style.opacity = 0.5;
+  } else {
+    personalWebsite.style.opacity = 1;
+    websiteSvg.style.opacity = 1;
+    const personalWebsiteShort = data.blog.split("/")[2];
+    personalWebsite.innerText = personalWebsiteShort;
+    personalWebsite.href = data.blog;
+    personalWebsite.target = "_blank";
+  }
+  website.appendChild(personalWebsite);
+
+  // For companyName
+  if (data.company === null) {
+    companyName.innerText = "Not Available";
+    companyName.removeAttribute("href");
+    companyName.style.opacity = 0.5;
+    companySvg.style.opacity = 0.5;
+  } else {
+    companyName.style.opacity = 1;
+    companySvg.style.opacity = 1;
+    const companyNameWithoutAt = data.company.split("@")[1];
+    companyName.innerText = data.company;
+    companyName.href = `https://github.com/${companyNameWithoutAt}`;
+    companyName.target = "_blank";
+  }
+  company.appendChild(companyName);
+}
+
+window.onload = fetchUser("cyrilebl");
 
 const searchBtn = document.querySelector("button");
 const input = document.getElementById("textInput");
 
 searchBtn.addEventListener("click", () => {
-  searchUser(input.value);
+  fetchUser(input.value);
 });
 
 input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
-    searchUser(input.value);
+    fetchUser(input.value);
   }
 });
