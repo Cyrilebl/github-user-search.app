@@ -54,16 +54,16 @@ h2 {
   line-height: 24px; }
 
 h3 {
-  color: var(--title);
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 33px; }
-
-h4 {
   color: var(--text);
   font-weight: normal;
   font-size: 13px;
   line-height: 20px; }
+
+h4 {
+  color: var(--title);
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 33px; }
 
 p {
   color: none;
@@ -97,16 +97,16 @@ a {
     line-height: 15px; }
 
   h3 {
-    color: var(--title);
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 27px; }
-
-  h4 {
     color: var(--text);
     font-weight: normal;
     font-size: 11px;
     line-height: 18px; }
+
+  h4 {
+    color: var(--title);
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 27px; }
 
   p {
     color: none;

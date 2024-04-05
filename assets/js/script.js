@@ -17,11 +17,11 @@ const creationDate = document.createElement("p");
 
 // Repositories and followers
 const repos = document.querySelector(".activity__data:nth-child(1)");
-const nbRepos = document.createElement("h3");
+const nbRepos = document.createElement("h4");
 const followers = document.querySelector(".activity__data:nth-child(2)");
-const nbfollowers = document.createElement("h3");
+const nbfollowers = document.createElement("h4");
 const following = document.querySelector(".activity__data:nth-child(3)");
-const nbfollowing = document.createElement("h3");
+const nbfollowing = document.createElement("h4");
 
 //Social informations
 const city = document.querySelector(".social__link:nth-child(1)");
