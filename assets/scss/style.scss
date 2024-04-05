@@ -140,6 +140,10 @@ input:-webkit-autofill:active {
   clip-path: circle();
 }
 
+.middle h2 {
+  margin-top: 2px;
+}
+
 .bio {
   color: var(--text);
   grid-column: 2/4;
@@ -220,6 +224,10 @@ input:-webkit-autofill:active {
 
   .middle {
     margin-top: 12px;
+  }
+
+  .middle h2 {
+    margin-top: 0;
   }
 
   .bio {
