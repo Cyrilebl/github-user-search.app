@@ -5,7 +5,7 @@ const resultImg = document.createElement("img");
 //Name and login
 const middle = document.querySelector(".middle");
 const resultName = document.createElement("h1");
-const resultLogin = document.createElement("h3");
+const resultLogin = document.createElement("h2");
 
 //Bio
 const bio = document.querySelector(".bio");
@@ -17,11 +17,11 @@ const creationDate = document.createElement("p");
 
 // Repositories and followers
 const repos = document.querySelector(".activity__data:nth-child(1)");
-const nbRepos = document.createElement("h2");
+const nbRepos = document.createElement("h3");
 const followers = document.querySelector(".activity__data:nth-child(2)");
-const nbfollowers = document.createElement("h2");
+const nbfollowers = document.createElement("h3");
 const following = document.querySelector(".activity__data:nth-child(3)");
-const nbfollowing = document.createElement("h2");
+const nbfollowing = document.createElement("h3");
 
 //Social informations
 const city = document.querySelector(".social__link:nth-child(1)");

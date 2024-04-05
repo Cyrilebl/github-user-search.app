@@ -48,16 +48,16 @@ h1 {
   line-height: 38px; }
 
 h2 {
-  color: var(--title);
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 33px; }
-
-h3 {
   color: var(--secondary);
   font-weight: normal;
   font-size: 16px;
   line-height: 24px; }
+
+h3 {
+  color: var(--title);
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 33px; }
 
 h4 {
   color: var(--text);
@@ -91,16 +91,16 @@ a {
     line-height: 28px; }
 
   h2 {
-    color: var(--title);
-    font-weight: bold;
-    font-size: 16px;
-    line-height: 27px; }
-
-  h3 {
     color: var(--secondary);
     font-weight: normal;
     font-size: 13px;
     line-height: 15px; }
+
+  h3 {
+    color: var(--title);
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 27px; }
 
   h4 {
     color: var(--text);

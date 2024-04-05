@@ -57,11 +57,11 @@ h1 {
 }
 
 h2 {
-  @include fontStyle(var(--title), bold, 22px, 33px);
+  @include fontStyle(var(--secondary), normal, 16px, 24px);
 }
 
 h3 {
-  @include fontStyle(var(--secondary), normal, 16px, 24px);
+  @include fontStyle(var(--title), bold, 22px, 33px);
 }
 
 h4 {
@@ -92,11 +92,11 @@ a {
   }
 
   h2 {
-    @include fontStyle(var(--title), bold, 16px, 27px);
+    @include fontStyle(var(--secondary), normal, 13px, 15px);
   }
 
   h3 {
-    @include fontStyle(var(--secondary), normal, 13px, 15px);
+    @include fontStyle(var(--title), bold, 16px, 27px);
   }
 
   h4 {
