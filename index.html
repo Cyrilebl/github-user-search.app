@@ -24,7 +24,7 @@
   </head>
   <body>
     <header>
-      <a href="#">devfinder</a>
+      <h1>devfinder</h1>
       <div class="colorMode">
         <p>Dark</p>
         <svg
@@ -42,19 +42,17 @@
       </div>
     </header>
     <section class="searchBar">
-      <div>
-        <img src="assets/images/icon-search.svg" alt="Search icon" />
-        <label for="textInput"></label>
+      <img src="assets/images/icon-search.svg" alt="Search icon" />
+      <label for="textInput">
         <input
           type="text"
           id="textInput"
           name="textInput"
           maxlength="25"
-          placeholder="Search GitHub username..."
-        />
-        <p class="error">No results</p>
-      </div>
+          placeholder="Search GitHub username…"
+      /></label>
       <button>Search</button>
+      <p class="error">No results</p>
     </section>
     <section id="result">
       <div class="result__top">
@@ -65,21 +63,21 @@
       </div>
       <div class="result__bottom">
         <div class="activity">
-          <div class="repos">
+          <div class="activity__data">
             <h4>Repos</h4>
           </div>
-          <div class="followers">
+          <div class="activity__data">
             <h4>Followers</h4>
           </div>
-          <div class="following">
+          <div class="activity__data">
             <h4>Following</h4>
           </div>
         </div>
         <div class="social">
-          <div class="link location">
+          <div class="social__link">
             <svg
               height="20"
-              width="14"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
               alt="position icon"
             >
@@ -89,7 +87,7 @@
               />
             </svg>
           </div>
-          <div class="link twitter">
+          <div class="social__link">
             <svg
               height="18"
               width="20"
@@ -102,7 +100,7 @@
               />
             </svg>
           </div>
-          <div class="link website">
+          <div class="social__link">
             <svg
               height="20"
               width="20"
@@ -119,7 +117,7 @@
               </g>
             </svg>
           </div>
-          <div class="link company">
+          <div class="social__link">
             <svg
               height="20"
               width="20"

@@ -4,10 +4,10 @@ const colorName = document.querySelector(".colorMode p");
 const colorIcon = document.querySelector(".colorMode path");
 
 //Social SVG
-const citySvg = document.querySelector(".link:nth-child(1) path");
-const twitterSvg = document.querySelector(".link:nth-child(2) path");
-const websiteSvg = document.querySelector(".link:nth-child(3) g");
-const companySvg = document.querySelector(".link:nth-child(4) path");
+const citySvg = document.querySelector(".social__link:nth-child(1) path");
+const twitterSvg = document.querySelector(".social__link:nth-child(2) path");
+const websiteSvg = document.querySelector(".social__link:nth-child(3) g");
+const companySvg = document.querySelector(".social__link:nth-child(4) path");
 
 const enabledarkMode = () => {
   document.body.classList.add("darkMode");

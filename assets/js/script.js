@@ -16,29 +16,29 @@ const right = document.querySelector(".right");
 const creationDate = document.createElement("p");
 
 // Repositories and followers
-const repos = document.querySelector(".repos");
-const nbRepos = document.createElement("h1");
-const followers = document.querySelector(".followers");
-const nbfollowers = document.createElement("h1");
-const following = document.querySelector(".following");
-const nbfollowing = document.createElement("h1");
+const repos = document.querySelector(".activity__data:nth-child(1)");
+const nbRepos = document.createElement("h2");
+const followers = document.querySelector(".activity__data:nth-child(2)");
+const nbfollowers = document.createElement("h2");
+const following = document.querySelector(".activity__data:nth-child(3)");
+const nbfollowing = document.createElement("h2");
 
 //Social informations
-const city = document.querySelector(".location");
+const city = document.querySelector(".social__link:nth-child(1)");
 const cityLife = document.createElement("p");
-const citySvg = document.querySelector(".link:nth-child(1) path");
+const citySvg = document.querySelector(".social__link:nth-child(1) path");
 
-const twitter = document.querySelector(".twitter");
+const twitter = document.querySelector(".social__link:nth-child(2)");
 const twitterAccount = document.createElement("a");
-const twitterSvg = document.querySelector(".link:nth-child(2) path");
+const twitterSvg = document.querySelector(".social__link:nth-child(2) path");
 
-const website = document.querySelector(".website");
+const website = document.querySelector(".social__link:nth-child(3)");
 const personalWebsite = document.createElement("a");
-const websiteSvg = document.querySelector(".link:nth-child(3) g");
+const websiteSvg = document.querySelector(".social__link:nth-child(3) g");
 
-const company = document.querySelector(".company");
+const company = document.querySelector(".social__link:nth-child(4)");
 const companyName = document.createElement("a");
-const companySvg = document.querySelector(".link:nth-child(4) path");
+const companySvg = document.querySelector(".social__link:nth-child(4) path");
 
 const errorMessage = document.querySelector(".error");
 
@@ -151,7 +151,7 @@ function updateDOM(data) {
   } else {
     personalWebsite.style.opacity = 1;
     websiteSvg.style.opacity = 1;
-    const personalWebsiteShort = data.blog.split("/")[2];
+    const personalWebsiteShort = data.blog.split("/")[2].split(".app")[0];
     personalWebsite.innerText = personalWebsiteShort;
     personalWebsite.href = data.blog;
     personalWebsite.target = "_blank";
